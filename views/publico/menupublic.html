@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="Es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-widht, initial-scale=1.0">
+    <link class="ic" type="image/png" rel="icon" href="../../resources/imagenes/FIFA_logo_without_slogan.svg.png">
+    <link rel="stylesheet" href="../../resources/css/stylesLogin.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Menu public</title>
+</head>
+
+<body class="h-section">
+    <!--inicio del navbar-->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto" href="menupublic.html"><img
+                    src="../../resources/imagenes/FIFA_logo_without_slogan.svg.png" class="imgicon"></a>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img
+                            src="../../resources/imagenes/FIFA_logo_without_slogan.svg.png" class="imgicon"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="menupublic.html">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="votos.html">Votar</a>
+                        </li>
+                        </form>
+                </div>
+            </div>
+            <a href="" class="login-button">Salir</a>
+            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </div>
+        </button>
+    </nav>
+    <!--final del navbar-->
+    <main class="container-fluid">
+        <div class="container xxl contenedor MenuPu">
+            <div class="row">
+                <div class="col TitleMPu">
+                    <H1>Videos</H1>
+                </div>
+            </div>
+            <div class="abcd">
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <iframe width="560" height="315" class="d-block w-100"
+                                src="https://www.youtube.com/embed/TXYx9YR4j0I?si=rI-vp15RqpFTSa-s"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="titulovid">Mejores Goles 2024</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <iframe width="560" height="315" class="d-block w-100" control
+                                src="https://www.youtube.com/embed/334zYaUI7Bg?si=phpMH8wX8u6bqrFF"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="titulovid">Mejores Pases del 2024</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <iframe width="560" height="315" class="d-block w-100"
+                                src="https://www.youtube.com/embed/WgcbJWtuzOE?si=sNA8HO5UrEI9eTxl"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5 class="titulovid">Mejores Jugadas 2024</h5>
+                                <p>Some representative placeholder content for the third slide.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row  grafica">
+                <div class="col TitleMPu">
+                    <H1>Más votados</H1>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col">
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col TitleMPu">
+                    <H1>3 Mejores candidatos a ganar</H1>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card ">
+                        <button class="botnvotar btimg"> <img src="../../resources/imagenes/Jugadores/messi.jfif"
+                                class="card-img-top imgjugador" alt="..."></button>
+                        <div class="card-body">
+                            <h5 class="card-title titulocar">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional
+                                content. This content is a little bit longer.</p>
+                            <div class="cardP2">
+                                <button type="button" class="btadd"> <a href="votos.html">Página de
+                                        votación</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <button class="botnvotar btimg"> <img src="../../resources/imagenes/Jugadores/cr7.webp"
+                                class="card-img-top imgjugador" alt="..."></button>
+                        <div class="card-body">
+                            <h5 class="card-title titulocar">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional
+                                content. This content is a little bit longer.</p>
+                            <div class="cardP2">
+                                <button type="button" class="btadd"> <a href="votos.html">Página de
+                                        votación</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <button class="botnvotar btimg"> <img src="../../resources/imagenes/Jugadores/Haaland.webp"
+                                class="card-img-top imgjugador" alt="..."></button>
+                        <div class="card-body">
+                            <h5 class="card-title titulocar">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to additional
+                                content. This content is a little bit longer.</p>
+                            <div class="cardP2">
+                                <button type="button" class="btadd"> <a href="votos.html">Página de
+                                        votación</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <section>
+        <div>
+
+        </div>
+
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../../resources/js/menu.js"></script>
+<script src="../../Controlers/Main.js"></script>
+<script src="https://kit.fontawesome.com/a478d5fd56.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</html>
