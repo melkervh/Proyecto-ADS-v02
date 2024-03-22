@@ -21,7 +21,7 @@ class Database
         $password = '1234';
 
         // Se crea la conexión mediante la extensión PDO y el controlador para PostgreSQL.
-        self::$connection = new PDO('gsql:host=' . $server . ';dbname=' . $database . ';port=', $username, $password);
+        self::$connection = new PDO('sql:host=' . $server . ';dbname=' . $database . ';port=', $username, $password);
     }
 
     /*
