@@ -106,13 +106,34 @@ function RadarGraf() {
     });
 }
 
-function BarGraf() {
+function BarGraf() { 
+   
+    const config = {
+        user: 'your_username',
+        password: 'your_password',
+        server: 'localhost',
+        database: 'your_database'
+    };
+    const mssql = require("mssql");
+
+mssql.connect(config, function (err) {
+    if (err) console.log(err);
+    let request = new mssql.Request();
+    request.query('SELECT COUNT(IdVote) as "Cantidad", P.NameP  as "Jugador" FROM tbVotes as V inner join tbPlayer as P on (V.IdPla=P.IdPla) group by P.NameP', function (err, records) {
+        if (err) console.log(err);
+        const data_chart= records; // Display retrieved records
+    });
+    
+});
+
+
+
     const ctx = document.getElementById('myChart2');
     const data = {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
             label: 'Más Votados',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: data_chart,
             backgroundColor: [
                 'rgba(255, 99, 132)',
                 'rgba(255, 159, 64)',
