@@ -168,5 +168,3 @@ mssql.connect(config, function (err) {
     });
 }
 
-
-
