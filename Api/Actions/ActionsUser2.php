@@ -20,7 +20,7 @@ if (isset($_GET['action'])) {
                 $correo = $_POST['correo'];
                 $clave = $_POST['clave'];
                 
-                $userId = $usuario->checkCredentials($correo, $clave);
+                $userId = $usuario->checkCredentials2($correo, $clave);
                 if ($userId) {
                     $_SESSION['UserId'] = $userId; // Guarda el ID del usuario en la sesión
                     $response['status'] = true;

@@ -1,6 +1,6 @@
 <?php
 require_once('../Helpers/Base.php');
-Class Usuario extends Validator
+Class Usuario2 extends Validator
 {
      // Declaración de atributos (propiedades).
      private $idvoters = null;
@@ -130,66 +130,46 @@ Class Usuario extends Validator
         return $this->correo_voters;
     }
 
-    /*
-    *   Métodos para gestionar la cuenta del usuario.
-    */
-
-    public function validarconexion()
+public function readAll()
     {
-        $sql = 'SELECT IdUser, UserC
-        FROM tbUser ORDER BY IdUser';
-        $params = null;
+        $sql = 'SELECT 
+        tbVoters.IdVot, tbVoters.NameV, tbVoters.LastV, tbVoters.DuiV, 
+        tbGender.Gender,tbUser.UserC
+        FROM 
+            tbVoters
+        INNER JOIN 
+            tbUser ON tbVoters.IdUser = tbUser.IdUser
+        INNER JOIN 
+            tbGender ON tbVoters.IdGen = tbGender.IdGen;';
+            $params = null;
+            return Database::getRows($sql, $params);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT 
+        tbVoters.IdVot, tbVoters.NameV, tbVoters.LastV, tbVoters.DuiV, 
+        tbGender.Gender,tbUser.UserC, tbUser.Passwordc
+        FROM 
+            tbVoters
+        INNER JOIN 
+            tbUser ON tbVoters.IdUser = tbUser.IdUser
+        INNER JOIN 
+            tbGender ON tbVoters.IdGen = tbGender.IdGen;
+         WHERE tbVoters.IdVot = ?';
+        $params = array($this->idvoters);
         return Database::getRow($sql, $params);
     }
-
-    public function checkCredentials($correo_voters, $password)
-{
-    $sql = 'SELECT IdUser, Passwordc FROM tbUser WHERE UserC = ?';
-    $params = array($correo_voters);
-    $userData = Database::getRow($sql, $params);
-    
-    if ($userData) {
-        // Obtenemos la contraseña almacenada en texto plano
-        $storedPassword = $userData['Passwordc'];
-        
-        // Verificamos si la contraseña proporcionada coincide con la almacenada
-        if ($password === $storedPassword) {
-            // Si la contraseña coincide, establecemos el ID de usuario en la sesión
-            $_SESSION['IdUser'] = $userData['IdUser'];
-            return true; // Credenciales válidas
-        } else {
-            return false; // Contraseña incorrecta
-        }
-    } else {
-        return false; // El usuario no fue encontrado en la base de datos
+    public function createRow(){
+        $sql = 'INSERT INTO tbVoters(NameV,LastV,DuiV,IdGen,IdUser)
+                VALUES(?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre_voters, $this->apellido_voters, $this->DuiUser, $this->genero, $this->IdUser);
+        return Database::executeRow($sql, $params);
     }
-}
-
-public function checkCredentials2($DuiUser, $password)
-{
-    $sql = 'SELECT DuiV, IdVot, tbUser.Passwordc
-    FROM tbVoters
-    INNER JOIN tbUser ON tbVoters.IdUser = tbUser.IdUser
-    WHERE DuiV = ?';
-    $params = array($DuiUser);
-    $userData = Database::getRow($sql, $params);
-    
-    if ($userData) {
-        // Obtenemos la contraseña almacenada en texto plano
-        $storedPassword = $userData['Passwordc'];
-        
-        // Verificamos si la contraseña proporcionada coincide con la almacenada
-        if ($password === $storedPassword) {
-            // Si la contraseña coincide, establecemos el ID de usuario en la sesión
-            $_SESSION['IdVot'] = $userData['IdVot'];
-            return true; // Credenciales válidas
-        } else {
-            return false; // Contraseña incorrecta
-        }
-    } else {
-        return false; // El usuario no fue encontrado en la base de datos
+    public function createRow2(){
+        $sql = 'INSERT INTO tbUser(UserC, Passwordc) VALUES(?, ?)';
+        $params = array($this->setCorreovoters, $this->setClavevoters);
+        return Database::executeRow($sql, $params);
     }
-}
-
 }
 ?>

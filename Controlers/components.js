@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost/Proyecto-ads/Api';
+const SERVER = 'http://localhost/Proyecto-ADS-V02/Api';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
@@ -69,38 +69,7 @@ function searchRows(api, form) {
     });
 }
 
-/*
-*   Función para crear o actualizar un registro en los mantenimientos de tablas (operación create y update).
-*
-*   Parámetros: api (ruta del servidor para enviar los datos), form (identificador del formulario) y modal (identificador de la caja de dialogo).
-*
-*   Retorno: ninguno.
-*/
-function saveRow(api, action, form, modal) {
-    fetch(api + action, {
-        method: 'post',
-        body: new FormData(document.getElementById(form))
-    }).then(function (request) {
-        // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-        if (request.ok) {
-            // Se obtiene la respuesta en formato JSON.
-            request.json().then(function (response) {
-                // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                if (response.status) {
-                    // Se cierra la caja de dialogo (modal) del formulario.
 
-                    // Se cargan nuevamente las filas en la tabla de la vista después de guardar un registro y se muestra un mensaje de éxito.
-                    readRows(api);
-                    sweetAlert(1, response.message, null);
-                } else {
-                    sweetAlert(2, response.exception, null);
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
 
 /*
 *   Función para eliminar un registro seleccionado en los mantenimientos de tablas (operación delete). Requiere el archivo sweetalert.min.js para funcionar.
@@ -194,7 +163,42 @@ function sweetAlert(type, text, url) {
         });
     }
 }
+/*
+*   Función para crear o actualizar un registro en los mantenimientos de tablas (operación create y update).
+*
+*   Parámetros: api (ruta del servidor para enviar los datos), form (identificador del formulario) y modal (identificador de la caja de dialogo).
+*
+*   Retorno: ninguno.
+*/
+function saveRow(api, action, form, modal) {
+    const formData = new FormData(document.getElementById(form));
+    console.log('Sending data to:', api + action);
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
 
+    fetch(api + action, {
+        method: 'post',
+        body: formData
+    }).then(function (request) {
+        if (request.ok) {
+            request.json().then(function (response) {
+                if (response.status) {
+                    readRows(api);
+                    sweetAlert(1, response.message, null);
+                    document.getElementById(form).reset();
+                    new bootstrap.Modal(document.getElementById(modal)).hide();
+                } else {
+                    sweetAlert(2, response.exception, null);
+                }
+            });
+        } else {
+            console.log(request.status + ' ' + request.statusText);
+        }
+    }).catch(function (error) {
+        console.error('Fetch error:', error);
+    });
+}
 /*
 *   Función para cargar las opciones en un select de formulario.
 *
@@ -235,113 +239,14 @@ function fillSelect(endpoint, select, selected) {
                 }
                 // Se agregan las opciones a la etiqueta select mediante su id.
                 document.getElementById(select).innerHTML = content;
-                // Se inicializa el componente Select del formulario para que muestre las opciones.
-                M.FormSelect.init(document.querySelectorAll('select'));
             });
         } else {
             console.log(request.status + ' ' + request.statusText);
         }
     });
+
 }
 
 
-// Función para mostrar un mensaje de confirmación al momento de cerrar sesión.
-function logOut() {
-    swal({
-        title: 'Advertencia',
-        text: '¿Está seguro de cerrar la sesión?',
-        icon: 'warning',
-        buttons: ['No', 'Sí'],
-        closeOnClickOutside: false,
-        closeOnEsc: false
-    }).then(function (value) {
-        // Se verifica si fue cliqueado el botón Sí para hacer la petición de cerrar sesión, de lo contrario se muestra un mensaje.
-        if (value) {
-            fetch(API + 'logOut', {
-                method: 'get'
-            }).then(function (request) {
-                // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-                if (request.ok) {
-                    // Se obtiene la respuesta en formato JSON.
-                    request.json().then(function (response) {
-                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                        if (response.status) {
-                            sweetAlert(1, response.message, 'index.html');
-                        } else {
-                            sweetAlert(2, response.exception, null);
-                        }
-                    });
-                } else {
-                    console.log(request.status + ' ' + request.statusText);
-                }
-            });
-        } else {
-            sweetAlert(4, 'Puede continuar con la sesión', null);
-        }
-    });
-}
+  
 
-var inactivityTime = function () {
-    var time;
-    window.onload = resetTimer;
-    // DOM Events
-    document.onmousemove = resetTimer; // Reconoce movimiento del mouse
-    document.onkeydown = resetTimer;  // Reconoce teclas presionadas
-    window.onmousedown = resetTimer;  // Reconoce toques de pantalla táctil     
-    window.ontouchstart = resetTimer; // Reconoce deslizes de pantalla táctil     
-    window.ontouchmove = resetTimer;  // Required by some devices 
-    window.onclick = resetTimer;      // Reconoce clicks de pantalla táctil
-    window.addEventListener('scroll', resetTimer, true); // Reconoce el scroll
-    function logOut() {
-        fetch(API + 'logOut', {
-            method: 'get'
-        }).then(function (request) {
-            // Se verifica si la petición es correcta, de lo contrario se muestra un mensaje en la consola indicando el problema.
-            if (request.ok) {
-                // Se obtiene la respuesta en formato JSON.
-                request.json().then(function (response) {
-                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-                    if (response.status) {
-                        sweetAlert(3, "Se ha cerrado la sesión por inactividad", 'index.html');
-                    } else {
-                        sweetAlert(2, response.exception, null);
-                    }
-                });
-            } else {
-                console.log(request.status + ' ' + request.statusText);
-            }
-        });
-    }
-    function resetTimer() {
-        clearTimeout(time);
-        time = setTimeout(logOut, 900000)
-        // 1000 milisegundos = 1 segundo
-        // 300000 milisegundos = 5 min
-    }
-}
-document.addEventListener('DOMContentLoaded', function () {
-    deleteText();
-});
-
-var deleteText = function () {
-    var time;
-    window.onload = resetTimer;
-    // DOM Events
-    document.onmousemove = resetTimer; // Reconoce movimiento del mouse
-    document.onkeydown = resetTimer;  // Reconoce teclas presionadas
-    window.onmousedown = resetTimer;  // Reconoce toques de pantalla táctil     
-    window.ontouchstart = resetTimer; // Reconoce deslizes de pantalla táctil     
-    window.ontouchmove = resetTimer;  // Required by some devices 
-    window.onclick = resetTimer;      // Reconoce clicks de pantalla táctil
-    window.addEventListener('scroll', resetTimer, true); // Reconoce el scroll
-    function deleteText() {
-        document.getElementById("clave").value = "";
-        document.getElementById("correo").value = "";
-    }
-    function resetTimer() {
-        clearTimeout(time);
-        time = setTimeout(deleteText, 10000)
-        // 1000 milisegundos = 1 segundo
-        // 300000 milisegundos = 5 min
-    }
-}

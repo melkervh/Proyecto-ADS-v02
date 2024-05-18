@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="Es">
+<html lang="En">
 
 <head>
   <meta charset="UTF-8">
@@ -13,26 +13,26 @@
 
 <body class="login">
   <section class="sect">
-    <form class="form" name="login" action="#" onsubmit="return validation()" method="post"  >
+    <form class="form" name="login" autocomplete="off" method="post" id="session-form"  >
       <h1 class="titulo2">Inicio sesión</h1>
       <div class="inputbox">
         <i class="fa-regular fa-envelope-open"></i>
-        <input type="email"  name="email" id="email" placeholder="correo" required>
-        <label for="">Correo </label>
+        <input   id="correo" name="correo"  >
       </div>
       <div class="inputbox">
         <i class="fa-solid fa-lock"></i>
-        <input type="password" required name="password" id="password" placeholder="clave">
-        <label for="">Contraseña</label>
+        <input  required  id="clave" name="clave"> 
       </div>
-      <div class="forget"><a href="#">olvidaste tu Contraseña</a></div>
-      <button class="b">Iniciar</button>
+      <button class="b" type="submit">Iniciar</button>
     </form>
   </section>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://kit.fontawesome.com/a478d5fd56.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="../../resources/js/Main.js"></script>
+  <script src="../../Controlers/Main.js"></script>
+  <script src="../../Controlers/components.js"></script>
+  <script src="../../Controlers/Privado/LoginUser.js"></script>
 </html>

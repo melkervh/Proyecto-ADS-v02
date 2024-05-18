@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-widht, initial-scale=1.0">
     <link class="ic" type="image/png" rel="icon" href="../../resources/imagenes/FIFA_logo_without_slogan.svg.png">
     <link rel="stylesheet" href="../../resources/css/stylesLogin.css">
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
@@ -13,50 +12,19 @@
 </head>
 
 <body class="h-section">
-    <!--inicio del navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand me-auto" href="#"><img
-                    src="../../resources/imagenes/FIFA_logo_without_slogan.svg.png" class="imgicon"></a>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img
-                            src="../../resources/imagenes/FIFA_logo_without_slogan.svg.png" class="imgicon"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="menupriv.html">Menu</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Usuarios.html">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="jugadores.html">Jugadores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Reporte.html">Reportes</a>
-                        </li>
-                        </form>
-                </div>
-            </div>
-            <a href="" class="login-button">Salir</a>
-            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-        </div>
-        </button>
-    </nav>
-    <!--final del navbar-->
-    <!--inicio del section-->
+    <header></header>
     <main class="container-fluid">
         <div class="container xxl contenedor ">
             <div class="table-responsive">
                 <div class="titulotable">
-                    <button type="button" class="btn1" data-mdb-ripple-init data-mdb-ripple-color="dark"
-                        data-bs-toggle="modal" data-bs-target="#Add">Agregar</button>
+                    <!-- Button trigger modal -->
+                    <button onclick="openCreate()" class="btadd" type="button" data-mdb-ripple-init
+                        data-mdb-ripple-color="dark" data-bs-toggle="modal" data-bs-target="#save-modal">
+                        Votante
+                    </button>
+                    <button onclick="openCreate2()" class="btadd" type="button" data-mdb-ripple-init data-mdb-ripple-color="dark" data-bs-toggle="modal" data-bs-target="#save-modal2">
+                        Credenciales
+                    </button>
                     <h4 class="h4tl">Lista de Usuarios</h4>
                 </div>
                 <table class="table table-xxl table-hover caption-top">
@@ -71,171 +39,106 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody class="table-light">
-                        <tr class="">
-                            <td>1</td>
-                            <td>..</td>
-                            <td>..</td>
-                            <td>..</td>
-                            <td>..</td>
-                            <td>..</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary btn-floating" data-bs-toggle="modal"
-                                        data-bs-target="#Edit" data-mdb-ripple-init>
-                                        <i class="fas fa-magic"></i></button>
-                                    <button type="button" class="btn btn-danger btn-floating" data-bs-toggle="modal"
-                                        data-bs-target="#Delete" data-mdb-ripple-init>
-                                        <i class="fa-solid fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody class="table-light" id="usuarios-tabla">
+                        <!-- Aquí se insertarán los datos de la tabla -->
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
     <section></section>
-    <div class="modal fade" id="Add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    
+    <!-- Modal para Votante -->
+    <div class="modal fade" id="save-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form autocomplete="off" method="post" id="save-form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Agregar Votante</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <input class="hidden" style="visibility:hidden;" type="number" id="id" name="id">
+                            <div class="col-lg-6">
+                                <label for="Nombre" class="form-label">Nombre</label>
+                                <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="" aria-label="Nombre">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="Apellido" class="form-label">Apellido</label>
+                                <input type="text" id="Apellido" name="Apellido" class="form-control" placeholder="" aria-label="Apellido">
+                            </div>
+                        </div>
+                        <div class="clave">
+                            <div class="row ">
+                                <div class="col-lg-6">
+                                    <label for="Dui" class="form-label">Dui</label>
+                                    <input type="text" id="Dui" name="Dui" class="form-control" placeholder="" aria-label="Dui">
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-lg-6">
+                                    <label for="Genero" class="form-label">Genero</label>
+                                    <select class="form-select" id="Genero" name="Genero" aria-label="Genero"></select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="Credenciales" class="form-label">Credenciales</label>
+                                    <select class="form-select" id="Credenciales" name="Credenciales" aria-label="Credenciales"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="DDA" id="close-button-voter" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btadd" id="save-button-voter">Guardar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="Nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Apellido</label>
-                        <input type="text" class="form-control" name="Apellido">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Dui</label>
-                        <input type="text" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Correo</label>
-                        <input type="email" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Contraseña</label>
-                        <input type="Password" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="col-form-label" for="inputGroupSelect01">Genero</label>
-                        <select class="form-select" id="inputGroupSelect01">
-                            <option selected></option>
-                            <option value="1">femenino</option>
-                            <option value="2">Masculino</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btadd">Guardar</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-    <div class="modal fade" id="Edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Editar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="Nombre">
+
+    <!-- Modal para Credenciales -->
+    <div class="modal fade" id="save-modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form autocomplete="off" method="post" id="save-form2">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Agregar Credenciales</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Apellido</label>
-                        <input type="text" class="form-control" name="Apellido">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Dui</label>
-                        <input type="text" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Correo</label>
-                        <input type="email" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Contraseña</label>
-                        <input type="Password" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="col-form-label" for="inputGroupSelect01">Genero</label>
-                        <select class="form-select" id="inputGroupSelect01">
-                            <option selected></option>
-                            <option value="1">femenino</option>
-                            <option value="2">Masculino</option>
-                        </select>
+                    <div class="modal-body">
+                        <div class="row">
+                            <input class="hidden" style="visibility:hidden;" type="number" id="id2" name="id2">
+                            <div class="col-lg-6">
+                                <label for="correo" class="form-label">Usuario</label>
+                                <input type="text" id="correo" name="correo" class="form-control" placeholder="" aria-label="Usuario">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="Passwordc" class="form-label">Contraseña</label>
+                                <input type="text" id="Passwordc" name="Passwordc" class="form-control" placeholder="" aria-label="Contraseña">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button type="button" class="DDA" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btadd" id="save-button-credentials">Guardar</button>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btadd" onclick="EditDataAlert()">Guardar</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
-    <div class="modal fade" id="Delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Eliminar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="Nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Apellido</label>
-                        <input type="text" class="form-control" name="Apellido">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Dui</label>
-                        <input type="text" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Correo</label>
-                        <input type="email" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Contraseña</label>
-                        <input type="Password" class="form-control" name="Dui">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="col-form-label" for="inputGroupSelect01">Genero</label>
-                        <select class="form-select" id="inputGroupSelect01">
-                            <option selected></option>
-                            <option value="1">Femenino</option>
-                            <option value="2">Masculino</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btadd" onclick="DeleteDataAlert()">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../Controlers/Main.js"></script>
 <script src="https://kit.fontawesome.com/a478d5fd56.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+<script src="../../Controlers/Main.js"></script>
+<script src="../../Controlers/components.js"></script>
+<script src="../../Controlers/Privado/account.js"></script>
+<script src="../../Controlers/Privado/Usuario.js"></script>
+
 </html>
