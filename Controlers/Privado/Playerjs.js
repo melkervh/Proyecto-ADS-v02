@@ -1,7 +1,7 @@
 const API_JUGADORES= SERVER+'../Actions/datosjugadores.php?action=';
-ENDPOINT_POSICION = SERVER+'../Actions/datosjugadores.php?action=readAll';
-ENDPOINT_CIUDAD = SERVER+'../Actions/datosjugadores.php?action=readAll';
-ENDPOINT_TEEM = SERVER+'../Actions/datosjugadores.php?action=readAll';
+ENDPOINT_POSICION = SERVER+'../Actions/posicionaction.php?action=readAll';
+ENDPOINT_CIUDAD = SERVER+'../Actions/paisaction.php?action=readAll';
+ENDPOINT_TEEM = SERVER+'../Actions/equipoaction.php?action=readAll';
 
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_JUGADORES);
@@ -61,7 +61,9 @@ function openCreate(){
     document.getElementById('save-form').reset();
 
     //TENGO DUDAA CON LO DE CATEGORIA
-    fillSelect(ENDPOINT_CATEGORIAS,'categoria',null);
+    fillSelect(ENDPOINT_POSICION,'Posición',null);
+    fillSelect(ENDPOINT_CIUDAD ,'País',null);
+    fillSelect(ENDPOINT_TEEM,'Equipo',null);
 }
 
 //preoarar el formulario al momento de modificar un registro
