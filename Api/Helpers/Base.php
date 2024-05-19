@@ -11,10 +11,10 @@ class Database
     private static function connect()
     {
         // Credenciales para establecer la conexión con la base de datos.
-        $server = 'localhost';
-        $database = 'ads';
-        $username = 'sa';  
-        $password = 'Daz04';  
+        $server = 'localhost:8080';
+        $database = 'Ads';
+        $username = 'nes';  
+        $password = 'nestor1234';  
 
         // Se crea la conexión mediante la extensión PDO y el controlador para SQL Server.
         try {
