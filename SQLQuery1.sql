@@ -115,6 +115,9 @@ INNER JOIN
     tbUser ON tbVoters.IdUser = tbUser.IdUser
 INNER JOIN 
     tbGender ON tbVoters.IdGen = tbGender.IdGen;
+<<<<<<< HEAD
+    
+=======
 
 
 
@@ -175,3 +178,4 @@ INSERT INTO tbVotos (IdPla, IdVot, DateVot) VALUES (2, 2, '2023-05-02');
 INSERT INTO tbVotos (IdPla, IdVot, DateVot) VALUES (3, 3, '2023-05-03');
 INSERT INTO tbVotos (IdPla, IdVot, DateVot) VALUES (4, 4, '2023-05-04');
 INSERT INTO tbVotos (IdPla, IdVot, DateVot) VALUES (5, 5, '2023-05-05');
+>>>>>>> 596dec96d70080ac57d4b45688b0f274e71e5fc9
