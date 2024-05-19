@@ -38,7 +38,7 @@ function openShowProductos() {
                         content += `
                         <tr>
                             <td class="text-center" >${row.IdPla}</td>
-                            <td><img src="${SERVER}images/productos/${row.ImgP}" class="materialboxed" height="100"></td>
+                            <td><img src="${SERVER}/Imagenes/${row.ImgP}" class="materialboxed" height="100"></td>
                             <td class="text-center" >${row.NAmeP}</td>
                             <td class="text-center" >${row.LastP}</td> 
                             <td class="text-center" >${row.AgeP}</td>

@@ -23,6 +23,51 @@ if (isset($_GET['action'])) {
             } else{
                 $result['exception']= 'No hay datos registrados';
             }
+            break;
+            case 'create':
+                $_POST= $jugador-> validateForm($_POST);
+                if(!$jugador->setNameP($_POST['NombreJugador'])){
+                    $result['exception']='Nombre incorrecto';
+                }elseif(!$jugador->setLast($_POST['Apellidojugador'])){
+                    $result['exception']='Apellido incorrecto';
+                } elseif (!$jugador->setAgeP($_POST['Edad'])){
+                    $result['exception']='Edad equivocada';
+                }elseif(!$jugador->setAsistP($_POST['Asistencias'])){
+                    $result['exception']='asistencias equivocadas';
+                }elseif(!$jugador->setGoalsP($_POST['golesj'])){
+                    $result['exception']='goles incorrectos';
+                }elseif(!$jugador->setMinsP($_POST['Minutos'])){
+                    $result['exception']='minutos equivocados';
+                }elseif(!$jugador->setStatus(isset($_POST['Status'])?1:0)){
+                    $result['exception']='estatus equivocado';
+                }elseif (!isset($_POST['Equipo'])) {
+                    $result['exception'] = 'Seleccione un Equipo';
+                }elseif (!$Usuario2->setIdTeam($_POST['Equipo'])) {
+                    $result['exception'] = 'Equipo incorrecta';
+                }elseif (!isset($_POST['País'])) {
+                    $result['exception'] = 'Seleccione un País';
+                }elseif (!$Usuario2->setIdCtry($_POST['País'])) {
+                    $result['exception'] = 'País incorrecta';
+                }elseif (!isset($_POST['Posición'])) {
+                    $result['exception'] = 'Seleccione un Posición';
+                }elseif (!$Usuario2->setIdPos($_POST['Posición'])) {
+                    $result['exception'] = 'Posición incorrecta';
+                }elseif(!is_uploaded_file($_FILES['Imagen'])){
+                 $result['exception']='Seleccione una imagen';   
+                } elseif (!$jugador->setImgP($_FILES['Imagen'])){
+                    $result['exception']=$jugador->getFileError();
+                }elseif($jugador->createRow()){
+                    $result['status']=1;
+                    if($jugador->saveFile($_FILES['Imagen'],$jugador->getRuta(), $jugador->getimg())){
+                        $result['message']='jugador guardado correctamente';
+                    }else {
+                        $result['message']='jugador guardado pero no se guardó la imagen';
+                    }
+                
+                }else {
+                    $result['exception']=Databse::gerException();;
+                }
+                break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
