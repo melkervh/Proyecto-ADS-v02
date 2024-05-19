@@ -22,8 +22,8 @@
         <div class="container xxl contenedor ">
             <div class="table-responsive">
                 <div class="titulotable">
-                    <button type="button" class="btn1" data-mdb-ripple-init data-mdb-ripple-color="dark"
-                        data-bs-toggle="modal" data-bs-target="#Add">Agregar</button>
+                    <button onclick="openCreate()" type="button" class="btadd" data-bs-toggle="modal"
+                        data-bs-target="#Edit" data-mdb-ripple-init data-bs-target="#Add">Agregar</button>
                     <h4 class="h4tl">Lista de Jugadores</h4>
                 </div>
                 <table class="table table-xxl table-hover caption-top">
@@ -101,394 +101,114 @@
         </div>
     </main>
     <section></section>
-    <div class="modal fade" id="Add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Jugadores</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="NombreJugador">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Apellido</label>
-                        <input type="text" class="form-control" name="Apellidojugador">
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Edad"
-                                    value="" name="Edad">
-                                <label for="floatingInputGrid">Edad</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="asistenciasj" placeholder="Asistencias"
-                                value="" name="asistencias">
-                                <label for="floatingInputGrid">Asistencias</label>
-                            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="golesj" placeholder="Goles Marcador"
-                                value="" name="golesmarcados">
-                                <label for="floatingInputGrid">Goles Marcados</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Minutos jugados" value="" name="Minutos">
-                                <label for="floatingInputGrid">Minutos jugados</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Status"
-                                    value="" name="Status">
-                                <label for="floatingInputGrid">Status</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="file" class="form-control" id="Imagen" name="Imagen" placeholder="Imagen"
-                                    value="" name="Imagen">
-                                <label for="floatingInputGrid">Imagen</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select class="form-select" id="Equipo" name="Equipo" aria-label="Credenciales"></select>
-                                <label for="floatingInputGrid">Equipo</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select class="form-select" id="País" name="País" aria-label="Credenciales"></select>
-                                <label for="floatingInputGrid">País</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <select class="form-select" id="Posición" name="Posición" aria-label="Credenciales"></select>
-                                <label for="floatingInputGrid">Posición</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btadd">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="Edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Editar Jugador</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="NombreJugador">
+            <form  method="post" id="save-form" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Apellido</label>
-                        <input type="text" class="form-control" name="Apellidojugador">
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Edad"
-                                    value="" name="Edad">
-                                <label for="floatingInputGrid">Edad</label>
-                            </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="col-form-label">Nombre</label>
+                            <input type="text" class="form-control" name="NombreJugador">
                         </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="asistenciasj" placeholder="Asistencias"
-                                value="" name="asistencias">
-                                <label for="floatingInputGrid">Asistencias</label>
-                            
-                            </div>
+                        <div class="form-group">
+                            <label for="" class="col-form-label">Apellido</label>
+                            <input type="text" class="form-control" name="Apellidojugador">
                         </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="golesj" placeholder="Goles Marcador"
-                                value="" name="golesmarcados">
-                                <label for="floatingInputGrid">Goles Marcados</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Minutos jugados" value="" name="Minutos">
-                                <label for="floatingInputGrid">Minutos jugados</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Status"
-                                    value="" name="Status">
-                                <label for="floatingInputGrid">Status</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="file" class="form-control" id="floatingInputGrid" placeholder="Imagen"
-                                    value="" name="Imagen">
-                                <label for="floatingInputGrid">Imagen</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Team"
-                                    value="" name="Team" required readonly>
-                                <label for="floatingInputGrid">Equipo</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Ctry"
-                                    value="" name="Ctry" required readonly>
-                                <label for="floatingInputGrid">País</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col-md">
+                        <div class="row g-3 input2a">
                             <div class="col-md">
-                                <button type="button" class="btnCtryTeam" data-mdb-ripple-init
-                                    data-mdb-ripple-color="dark" data-bs-toggle="modal"
-                                    data-bs-target="#Team">Equipo</button>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="Edad"
+                                        value="" name="Edad">
+                                    <label for="floatingInputGrid">Edad</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md">
-                            <button type="button" class="btnCtryTeam" data-mdb-ripple-init data-mdb-ripple-color="dark"
-                                data-bs-toggle="modal" data-bs-target="#Ctry">País</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btadd" onclick="EditDataAlert()">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Eliminar Jugador</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="NombreJugador">
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-form-label">Apellido</label>
-                        <input type="text" class="form-control" name="Apellidojugador">
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Edad"
-                                    value="" name="Edad">
-                                <label for="floatingInputGrid">Edad</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="asistenciasj" placeholder="Asistencias"
-                                value="" name="asistencias">
-                                <label for="floatingInputGrid">Asistencias</label>
-                            
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                       <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="golesj" placeholder="Goles Marcador"
-                                value="" name="golesmarcados">
-                                <label for="floatingInputGrid">Goles Marcados</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid"
-                                    placeholder="Minutos jugados" value="" name="Minutos">
-                                <label for="floatingInputGrid">Minutos jugados</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Status"
-                                    value="" name="Status">
-                                <label for="floatingInputGrid">Status</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="file" class="form-control" id="floatingInputGrid" placeholder="Imagen"
-                                    value="" name="Imagen">
-                                <label for="floatingInputGrid">Imagen</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-3 input2a">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Team"
-                                    value="" name="Team" required readonly>
-                                <label for="floatingInputGrid">Equipo</label>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Ctry"
-                                    value="" name="Ctry" required readonly>
-                                <label for="floatingInputGrid">País</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col-md">
                             <div class="col-md">
-                                <button type="button" class="btnCtryTeam" data-mdb-ripple-init
-                                    data-mdb-ripple-color="dark" data-bs-toggle="modal"
-                                    data-bs-target="#Team">Equipo</button>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="asistenciasj" placeholder="Asistencias"
+                                        value="" name="asistencias">
+                                    <label for="floatingInputGrid">Asistencias</label>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <button type="button" class="btnCtryTeam" data-mdb-ripple-init data-mdb-ripple-color="dark"
-                                data-bs-toggle="modal" data-bs-target="#Ctry">País</button>
+                        <div class="row g-3 input2a">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="golesj" placeholder="Goles Marcador"
+                                        value="" name="golesmarcados">
+                                    <label for="floatingInputGrid">Goles Marcados</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid"
+                                        placeholder="Minutos jugados" value="" name="Minutos">
+                                    <label for="floatingInputGrid">Minutos jugados</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 input2a">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder="Status"
+                                        value="" name="Status">
+                                    <label for="floatingInputGrid">Status</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" id="floatingInputGrid" placeholder="Imagen"
+                                        value="" name="Imagen">
+                                    <label for="floatingInputGrid">Imagen</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 input2a">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="Equipo" name="Equipo"
+                                        aria-label="Credenciales"></select>
+                                    <label for="floatingInputGrid">Equipo</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="País" name="País"
+                                        aria-label="Credenciales"></select>
+                                    <label for="floatingInputGrid">País</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select class="form-select" id="Posición" name="Posición"
+                                        aria-label="Credenciales"></select>
+                                    <label for="floatingInputGrid">Posición</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btadd" onclick="DeleteDataAlert()">Eliminar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Ctry" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Paises</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <div class="input-group rounded">
-                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                                aria-describedby="search-addon" />
-                        </div>
-                        <table class="table table-hover tbCtryTeam">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">País</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="modal-footer">
+                        <button type="button" class=" DDA" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btadd" onclick="EditDataAlert()">Guardar</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-toggle="modal" data-bs-target="#Add">Regresar</button>
-                </div>
-            </div>
+            </form>
         </div>
-    </div>
-    <div class="modal fade" id="Team" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Equipos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <div class="input-group rounded">
-                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                                aria-describedby="search-addon" />
-                        </div>
-                        <table class="table table-hover tbCtryTeam">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Equipos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class=" DDA" data-bs-toggle="modal" data-bs-target="#Add">Regresar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../resources/js/playerjs.js"></script>
 <script src="../../Controlers/Main.js"></script>
 <script src="../../Controlers/components.js"></script>
 <script src="../../Controlers/Privado/account.js"></script>
+<script src="../../Controlers/Privado/Playerjs.js"></script>
 <script src="https://kit.fontawesome.com/a478d5fd56.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

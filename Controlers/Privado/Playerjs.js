@@ -58,7 +58,7 @@ document.getElementById('search-form').addEventListener('submit',function(event)
 });
 
 function openCreate(){
-    document.getElementById('save-form').reset();
+    document.getElementById('modal-title').textContent = 'Agregar Usuario';
 
     //TENGO DUDAA CON LO DE CATEGORIA
     fillSelect(ENDPOINT_POSICION,'Posición',null);
