@@ -5,7 +5,7 @@
 /*
 *   Constante para establecer la ruta del servidor.
 */
-const SERVER = 'http://localhost:8080/Proyecto-ADS-V02/Api';
+const SERVER = 'http://localhost/Proyecto-ADS-V02/Api';
 
 /*
 *   Función para obtener todos los registros disponibles en los mantenimientos de tablas (operación read).
