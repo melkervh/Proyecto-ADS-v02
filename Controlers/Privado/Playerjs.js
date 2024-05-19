@@ -1,5 +1,7 @@
-const API_JUGADORES= SERVER+'../../../Actions/datosjugadores.php?action=';
-ENDPOINT_CATEGORIAS = SERVER+'../../../Actions/datosjugadores.php?action=';
+const API_JUGADORES= SERVER+'../Actions/datosjugadores.php?action=';
+ENDPOINT_POSICION = SERVER+'../Actions/datosjugadores.php?action=readAll';
+ENDPOINT_CIUDAD = SERVER+'../Actions/datosjugadores.php?action=readAll';
+ENDPOINT_TEEM = SERVER+'../Actions/datosjugadores.php?action=readAll';
 
 document.addEventListener('DOMContentLoaded', function(){
     readRows(API_JUGADORES);

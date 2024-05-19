@@ -109,6 +109,7 @@ function RadarGraf() {
 function BarGraf() { 
    
     const config = {
+        
         user: 'your_username',
         password: 'your_password',
         server: 'localhost',
