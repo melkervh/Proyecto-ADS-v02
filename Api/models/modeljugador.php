@@ -2,19 +2,20 @@
 class jugador extends Validator
 {
     //Declarar atributos 
-    private $idjugador = null 
-    private $nombrejugador = null 
-    private $apellidojugador = null
-    private $edadjugador = null
-    private $asistencias = null 
-    private $minutosjugados = null 
-    private $estatus = null 
-    private $equipo = null 
-    private $pais = null 
-    private $posicion = null 
-    private $golesmarcados = null 
-    private $img =null
-    private $ruta = '../jugadores/'
+    private $idjugador = null;
+    private $nombrejugador = null; 
+    private $apellidojugador = null;
+    private $edadjugador = null;
+    private $asistencias = null;
+    private $minutosjugados = null;
+    private $estatus = null;
+    private $equipo = null;
+    private $pais = null ;
+    private $posicion = null;
+    private $golesmarcados = null; 
+    private $img =null;
+    private $ruta = '../jugadores/';
+    private $iduser= 1;
 
 //metodo para validad 
 
@@ -198,9 +199,9 @@ public function getimg()
 
 public function createRow()
 {
-    $sql='INSERT INTO tbPlayer (NameP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, Img, StatusP, IdTeam, IdCtry, IdUSer, Idpos
+    $sql='INSERT INTO tbPlayer (NameP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, Img, StatusP, IdTeam, IdCtry, IdUSer, Idpos)
     VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
-    $params= array($this->nombrejugador, $this->apellido, $this->edadjugador,$this->asistencias, $this->golesmarcados, $this->minutosjugados, $this->img,$this->estatus,$this->equipo,$this->pais,$this->posicion)
+    $params= array($this->nombrejugador, $this->apellido, $this->edadjugador,$this->asistencias, $this->golesmarcados, $this->minutosjugados, $this->img,$this->estatus,$this->equipo,$this->pais,$this->$iduser,$this->posicion)
     return Database::executeRow($sql,$params);
 }
 
@@ -216,9 +217,10 @@ public function searchRows($value)
 
 public function readAll()
 {
-    $sql = 'SELECT IdPlayer, NameP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, ImgP, StatusP, IdTeam, IdCtry, IdUser, IdPos
-    FROM tbPlayer 
-    ORDER BY NameP';
+    $sql = 'SELECT IdPla, NAmeP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, ImgP, StatusP, tbTeams.TeamName, tbCountry.CtryName, tbPosition.Position
+    from tbPlayer inner join tbTeams  on tbPlayer.IdTeam = tbTeams.IdTeam
+    inner join tbPosition on tbPlayer.IdPos = tbPosition.IdPos
+    inner join tbCountry on tbPlayer.IdCtry = tbCountry.IdCtry';
     $params = null;
     return Database::getRows($sql, $params);
 }

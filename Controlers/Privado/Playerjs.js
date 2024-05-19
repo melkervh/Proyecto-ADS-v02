@@ -15,11 +15,11 @@ function fillTable(dataset){
     dataset.map(function(row){
         var estado;
             if(row.estado_jugador=='1'){
-                //no se qué poner en lugar de disponible
-                estado= "Disponible";
+                
+                estado= "Visible";
             }
             if (row.estado_jugador=="0"){
-                estado ="No disponible";
+                estado ="No visible";
             }
          content+=`
             <tr>

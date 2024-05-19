@@ -9,7 +9,7 @@ if (isset($_GET['action'])){
  session_start();
  $jugador= new jugador;
  $result = array('status'=> 0, 'message'=> null, 'exception' => null );
- if (isset($_SESSION('idPlayer')) OR true){
+ if (isset($_SESSION('IdUser')) OR true){
     $result['sseion']= 1;
     switch ($_GET['action']){
         case'readAll';
@@ -56,6 +56,10 @@ if (isset($_GET['action'])){
                 $result['exception']='pais equivocado';
             }elseif(!$jugador->setposicion($_POST['posicion'])){
                 $result['exception']='posicion equivocada';
+            }elseif(!$jugador->setequipo($_POST['equipoj'])){
+                $result['exception']='Equipo equivocado';
+            }elseif(!$jugador->setpais($_POST['paisj'])){
+                $result['exception']='Pais equivocado';
             }elseif(!is_uploaded_file($_FILES['archivo'])){
              $result['exception']='Seleccione una imagen';   
             } elseif (!$jugador->setimg($_FILES['archivo'])){
