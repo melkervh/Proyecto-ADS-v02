@@ -21,7 +21,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-
             case 'vote':
                 if (isset($_POST['idPla'])) {
                     $idPla = $_POST['idPla'];

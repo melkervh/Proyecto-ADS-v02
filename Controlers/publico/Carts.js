@@ -2,6 +2,7 @@ const API_CARTS = SERVER + '/Actions/Actionscarts.php?action=';
 
 document.addEventListener('DOMContentLoaded', function () {
     openShowCarts();
+    estadisticas();
 });
 
 function openShowCarts() {
@@ -25,7 +26,7 @@ function openShowCarts() {
                                     <h5 class="card-title titulocar">${row.NAmeP} ${row.LastP}</h5>
                                     <div class="cardP">
                                         <button type="button" class="btadd" onclick="voteConfirmationAlert(${row.IdPla})">Votar</button>
-                                        <button type="button" class="btadd" data-bs-toggle="modal" data-bs-target="#${modalId}">Más información</button>
+                                        <button type="button" onclick="estadisticas(${row.IdPla})" class="btadd" data-bs-toggle="modal" data-bs-target="#${modalId}">Más información</button>
                                     </div>
                                 </div>
                             </div>
@@ -39,13 +40,6 @@ function openShowCarts() {
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="container InfoPlayer">
-                                            <div class="row">
-                                                <div class="col-sm stastgraf">
-                                                    <canvas id="myChart"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="row InfoTextPlayer">
                                             <p>${row.NAmeP} ${row.LastP} es un talentoso futbolista de ${row.AgeP} años. Actualmente,
                                             juega para el equipo ${row.TeamName}, donde ha demostrado ser una pieza clave 
@@ -135,30 +129,6 @@ function sendVote(idPla) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("idPla=" + idPla);
 }
-function graficoTopsjugadores() {
-    fetch(API_GRAF + 'graficoTopsjugadores', {
-      method: 'get'
-    }).then(function (request) {
-      if (request.ok) {
-        request.json().then(function (response) {
-          if (response.status) {
-            let Jugador = [];
-            let Cantidad = [];
-            response.dataset.map(function (row) {
-              Jugador.push(row.Jugador);
-              Cantidad.push(row.Cantidad);
-            });
-            barGraph('myChart3', Jugador, Cantidad, 'Jugadores Más Votados');
-          } else {
-            document.getElementById('myChart3').remove();
-            console.log(response.exception);
-          }
-        });
-      } else {
-        console.log(request.status + ' ' + request.statusText);
-      }
-    });
-  }
   
 
 

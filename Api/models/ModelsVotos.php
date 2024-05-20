@@ -50,7 +50,7 @@ class Votos extends Validator{
                 // Capturar cualquier excepción y retornar falso
                 return false;
             }
-        }
+        }    
     
 }
 
