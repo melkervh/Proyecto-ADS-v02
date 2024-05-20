@@ -11,6 +11,7 @@ class Votos extends Validator{
         $params = null;
         return Database::getRows($sql, $params);
     }
+<<<<<<< Updated upstream
                 public function vote($idPla, $idVot)
             {
                 // Verificar si el usuario ya ha votado por este jugador
@@ -52,6 +53,17 @@ class Votos extends Validator{
             }
         }    
     
+=======
+
+    public function reporteResultados()
+    {
+        $sql = 'SELECT NAmeP, LastP, AgeP, GoalsP, StatusP ,tbTeams.TeamName, tbCountry.CtryName, tbPosition.Position
+        FROM tbplayer 
+        ORDER BY StatusP';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
+>>>>>>> Stashed changes
 }
 
 

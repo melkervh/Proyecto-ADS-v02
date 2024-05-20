@@ -190,6 +190,53 @@ class Jugador extends Validator{
     return Database::getRows($sql, $params);
 }
 
+<<<<<<< Updated upstream
+=======
+    public function reporteJugador()
+    {
+        $sql = 'SELECT IdPla, NAmeP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, ImgP, StatusP, tbTeams.TeamName, tbCountry.CtryName, tbPosition.Position
+        FROM rbplayer 
+        ORDER BY NAmeP';
+        $params = null;
+        return Database::getRows($sql,$params);
+    }
+
+    public function checkJugador($alias)
+    {
+        $sql = 'SELECT id_Pla FROM tbPlayer WHERE idPla = ?';
+        $params = array($alias);
+        if ($data = Database::getRow($sql, $params)) {
+            $this->id = $data['id_Pla'];
+            $this->alias = $alias;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function createRow()
+    {
+        $sql = 'INSERT INTO tbPlayer(NAmeP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, ImgP, StatusP, tbTeams.TeamName, tbCountry.CtryName, tbPosition.Position )
+                VALUES(?, ?, ?, ?, ?,?,'', 0,?,?,?'; 
+        $params = array($this->nombres, $this->apellidos, $this->edad, $this->asistencias, $this->goles, $this->minutosJugados,$this->img,$this->estado,$this->equipo,$this->pais,$this->posicion);
+        return Database::executeRow($sql, $params);
+    }
+    public function updateRow()
+    {
+        $sql = 'UPDATE tbPlayer 
+                SET NAmeP = ?, LastP = ?, AgeP = ?, AsistP = ?, GoalsP = ?, MinsPlayed = ?, ImgP = ?, StatusP = 0, tbTeams.TeamName = ?, tbCountry.CtryName = ?, tbPosition.Position = ?
+                WHERE idPla = ?';
+        $params = array($this->nombres, $this->apellidos, $this->edad, $this->asistencias, $this->goles, $this->minutosJugados,$this->img,$this->estado,$this->equipo,$this->pais,$this->posicion);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM tbPlayer
+                WHERE idPla = ?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
+>>>>>>> Stashed changes
 }
 
 ?>

@@ -190,6 +190,14 @@ public function checkCredentials2($DuiUser, $password)
         return false; // El usuario no fue encontrado en la base de datos
     }
 }
+public function reporteUsuarios()
+     {
+         $sql = 'SELECT nombre_voters, apellidos_voters, DuiUser,
+                 FROM usuarios 
+                 ORDER BY apellidos_usuario';
+         $params = null;
+         return Database::getRows($sql,$params);
+     }
 
 }
 ?>

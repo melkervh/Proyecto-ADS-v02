@@ -14,7 +14,7 @@ class Database
         $server = 'localhost';
         $database = 'Ads';
         $username = 'sa';  
-        $password = 'Daz04';  
+        $password = '1234';  
 
         // Se crea la conexión mediante la extensión PDO y el controlador para SQL Server.
         try {
