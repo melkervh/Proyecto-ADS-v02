@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['IdUser']) OR true) {
+    if (isset($_SESSION['IdVot']) OR true) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -25,8 +25,21 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-                    default:
-                    $result['exception'] = 'Acción no disponible dentro de la sesión';
+                case 'vote':
+                    if (isset($_POST['idPla'])) {
+                        $idPla = $_POST['idPla'];
+                        if ($Votos->vote($idPla, $_SESSION['IdVot'])) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['status'] = 2; // Indica que el usuario ya ha votado anteriormente
+                        }
+                    } else {
+                        $result['exception'] = 'ID de jugador no proporcionado';
+                    }
+                    break;
+                
+            default:
+                $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
         // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
         header('content-type: application/json; charset=utf-8');
