@@ -190,8 +190,6 @@ class Jugador extends Validator{
     return Database::getRows($sql, $params);
 }
 
-<<<<<<< Updated upstream
-=======
     public function reporteJugador()
     {
         $sql = 'SELECT IdPla, NAmeP, LastP, AgeP, AsistP, GoalsP, MinsPlayed, ImgP, StatusP, tbTeams.TeamName, tbCountry.CtryName, tbPosition.Position
@@ -236,7 +234,6 @@ class Jugador extends Validator{
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
->>>>>>> Stashed changes
 }
 
 ?>
