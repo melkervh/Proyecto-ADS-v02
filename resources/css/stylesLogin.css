@@ -515,3 +515,9 @@ main {
 .RIn {
     width: 80%;
 }
+#myChart3 {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}

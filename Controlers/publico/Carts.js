@@ -1,10 +1,10 @@
-const API_CARTS = SERVER + '../Actions/Actionscarts.php?action=';
+const API_CARTS = SERVER + '/Actions/Actionscarts.php?action=';
 
 document.addEventListener('DOMContentLoaded', function () {
-    openShowProductos();
+    openShowCarts();
 });
 
-function openShowProductos() {
+function openShowCarts() {
     fetch(API_CARTS + 'readAll', {
         method: 'get'
     }).then(function (request) {
