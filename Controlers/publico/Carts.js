@@ -76,52 +76,10 @@ function openShowProductos() {
     });
 }
 
-
-// Función para enviar el voto al servidor
-function sendVote(idPla) {
-    fetch(API_CARTS + 'vote', {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            idPla: idPla
-        })
-    }).then(function (request) {
-        if (request.ok) {
-            request.json().then(function (response) {
-                if (response.status === 1) {
-                    // Mostrar alerta de éxito si el voto se registra correctamente
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Voto registrado exitosamente!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                } else if (response.status === 2) {
-                    // Mostrar alerta si el usuario ya ha votado anteriormente
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ya has votado por este jugador anteriormente',
-                    });
-                } else {
-                    // Mostrar alerta si hay algún otro error
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.exception,
-                    });
-                }
-            });
-        } else {
-            console.log(request.status + ' ' + request.statusText);
-        }
-    });
-}
-
-// Función para mostrar la alerta de confirmación antes de votar
 function voteConfirmationAlert(idPla) {
+    // Depuración: Imprimir el valor de idPla antes de enviar el voto
+    console.log("ID del jugador:", idPla);
+    
     // Mostrar una alerta de confirmación antes de votar
     Swal.fire({
         title: '¿Estás seguro de que deseas votar por este jugador?',
@@ -136,6 +94,50 @@ function voteConfirmationAlert(idPla) {
         }
     });
 }
+
+function sendVote(idPla) {
+    // Depuración: Imprimir el valor de idPla antes de enviar el voto
+    console.log("ID del jugador a votar:", idPla);
+
+    // Enviar el ID del jugador al servidor mediante una solicitud AJAX
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                if (response.status === 1) {
+                    // Mostrar alerta de éxito si el voto se registra correctamente
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Voto registrado exitosamente!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    // Mostrar alerta si hay algún otro error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message || response.exception,
+                    });
+                }
+            } else {
+                // Manejar errores de la solicitud
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de conexión',
+                    text: 'No se pudo conectar con el servidor. Inténtalo de nuevo más tarde.',
+                });
+            }
+        }
+    };
+    xhttp.open("POST", API_CARTS + 'vote', true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("idPla=" + idPla);
+}
+
+
+
 
 
   

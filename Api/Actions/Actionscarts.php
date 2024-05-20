@@ -3,18 +3,14 @@ require_once('../Helpers/Base.php');
 require_once('../Helpers/Validator.php');
 require_once('../Models/ModelsVotos.php');
 
-// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
-    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
-    // Se instancia la clase correspondiente.
     $Votos = new Votos;
-    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
-    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+
     if (isset($_SESSION['IdVot']) OR true) {
         $result['session'] = 1;
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+
         switch ($_GET['action']) {
             case 'readAll':
                 if ($result['dataset'] = $Votos->ReadJugador()) {
@@ -25,30 +21,33 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-                case 'vote':
-                    if (isset($_POST['idPla'])) {
-                        $idPla = $_POST['idPla'];
-                        if ($Votos->vote($idPla, $_SESSION['IdVot'])) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['status'] = 2; // Indica que el usuario ya ha votado anteriormente
-                        }
+
+            case 'vote':
+                if (isset($_POST['idPla'])) {
+                    $idPla = $_POST['idPla'];
+                    $idVot = $_SESSION['IdVot']; // Asegúrate de que IdVot esté correctamente definido
+
+                    if ($Votos->vote($idPla, $idVot)) {
+                        $result['status'] = 1;
+                        $result['message'] = 'El voto se ha registrado correctamente.';
                     } else {
-                        $result['exception'] = 'ID de jugador no proporcionado';
+                        $result['message'] = 'Hubo un problema al registrar el voto. Inténtalo de nuevo más tarde.';
                     }
-                    break;
-                
+                } else {
+                    $result['message'] = 'ID de jugador no proporcionado.';
+                }
+                break;
+
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
-        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+
         header('content-type: application/json; charset=utf-8');
-        // Se imprime el resultado en formato JSON y se retorna al controlador.
-        print(json_encode($result));
+        echo json_encode($result);
     } else {
-        print(json_encode('Acceso denegado'));
+        echo json_encode(array('status' => 0, 'message' => 'Acceso denegado'));
     }
 } else {
-    print(json_encode('Recurso no disponible'));
+    echo json_encode(array('status' => 0, 'message' => 'Recurso no disponible'));
 }
 ?>
