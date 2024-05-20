@@ -135,7 +135,31 @@ function sendVote(idPla) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("idPla=" + idPla);
 }
-
+function graficoTopsjugadores() {
+    fetch(API_GRAF + 'graficoTopsjugadores', {
+      method: 'get'
+    }).then(function (request) {
+      if (request.ok) {
+        request.json().then(function (response) {
+          if (response.status) {
+            let Jugador = [];
+            let Cantidad = [];
+            response.dataset.map(function (row) {
+              Jugador.push(row.Jugador);
+              Cantidad.push(row.Cantidad);
+            });
+            barGraph('myChart3', Jugador, Cantidad, 'Jugadores Más Votados');
+          } else {
+            document.getElementById('myChart3').remove();
+            console.log(response.exception);
+          }
+        });
+      } else {
+        console.log(request.status + ' ' + request.statusText);
+      }
+    });
+  }
+  
 
 
 
